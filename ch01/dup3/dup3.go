@@ -16,7 +16,7 @@ func main() {
 			continue
 		}
 		for _, line := range strings.Split(string(data), "\n") {
-			counts[strings.TrimRight(line, "\n")]++
+			counts[line]++
 		}
 	}
 	for line, n := range counts {

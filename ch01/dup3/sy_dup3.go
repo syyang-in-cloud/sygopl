@@ -22,6 +22,7 @@ func main() {
 		// The original problem can be understood as : https://play.golang.org/p/ov4D8jO2WHO
 		// We can find more visible way with : https://play.golang.org/p/7Y7OpgGOj7w
 		// Now we can see why, there is an extra split between the last "\n" and the end of string
+		// the solution below can be seen easily with : https://play.golang.org/p/8cMAlENndjN
 
 		for _, line := range strings.SplitAfter(string(data), "\n") {
 			if len(line) > 0 {
