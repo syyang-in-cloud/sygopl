@@ -4,11 +4,11 @@ import fileinput
 def main():
     counts = dict()
     for input in fileinput.input():
-        key_input = input.rstrip()
-        if key_input in counts.keys():
-            counts[key_input] += 1
+        input = input.rstrip()
+        if input in counts.keys():
+            counts[input] += 1
         else:
-            counts[key_input] = 1
+            counts[input] = 1
 
     for line, n in counts.items():
         if n > 1:
