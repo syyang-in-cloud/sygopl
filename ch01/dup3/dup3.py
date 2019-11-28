@@ -24,7 +24,7 @@ def main():
 
     for line, n in counts.items():
         if n > 1:
-            print(f"{n}\t'{line}'")
+            print(f"{n}\t{line}")
 
 
 if __name__ == "__main__":
