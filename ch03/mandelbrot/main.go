@@ -34,8 +34,10 @@ func mandelbrot(z complex128) color.Color {
 	for n := uint8(0); n < iterations; n++ {
 		v = v*v + z
 		if cmplx.Abs(v) > 2 {
+			// fmt.Fprintf(os.Stderr, "The type of color.Gray{} is %T\n", color.Gray{255 - contrast*n})
 			return color.Gray{255 - contrast*n}
 		}
 	}
+	// fmt.Fprintf(os.Stderr, "The type of color.Black is %T\n", color.Black)
 	return color.Black
 }
