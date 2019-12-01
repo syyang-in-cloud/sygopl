@@ -35,6 +35,7 @@ func mandelbrot(z complex128) color.Color {
 		v = v*v + z
 		if cmplx.Abs(v) > 2 {
 			// fmt.Fprintf(os.Stderr, "The type of color.Gray{} is %T\n", color.Gray{255 - contrast*n})
+			// return color.Gray{Y: 255 - contrast*n}
 			return color.Gray{255 - contrast*n}
 		}
 	}
