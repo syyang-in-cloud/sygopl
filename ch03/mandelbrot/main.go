@@ -20,13 +20,13 @@ func main() {
 		for px := 0; px < width; px++ {
 			x := float64(px)/width*(xmax-xmin) + xmin
 			z := complex(x, y)
-			img.Set(px, py, mandelbrotz(z))
+			img.Set(px, py, mandelbrot(z))
 		}
 	}
 	png.Encode(os.Stdout, img)
 }
 
-func mandelbrotz(z complex128) color.Color {
+func mandelbrot(z complex128) color.Color {
 	const iterations = 200
 	const contrast = 15
 
