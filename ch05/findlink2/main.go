@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -10,21 +11,29 @@ import (
 
 func main() {
 	for _, url := range os.Args[1:] {
-		links, err := findLinks(url)
+		links, err := findLinksLog(url)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "%v\n", err)
-			os.Exit(1)
+			fmt.Fprintf(os.Stderr, "url %s: %v\n", url, err)
+			continue
 		}
+		log.Println(findLinks(url))
+		links, err = findLinks(url)
+		log.Println(links, err)
+
 		for _, link := range links {
 			fmt.Println(link)
 		}
 	}
 }
 
+func findLinksLog(url string) ([]string, error) {
+	log.Printf("findLinks %s", url)
+	return findLinks(url)
+}
+
 func findLinks(url string) ([]string, error) {
 	resp, err := http.Get(url)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", err)
 		return nil, err
 	}
 	if resp.StatusCode != http.StatusOK {
@@ -34,7 +43,7 @@ func findLinks(url string) ([]string, error) {
 	doc, err := html.Parse(resp.Body)
 	resp.Body.Close()
 	if err != nil {
-		return nil, fmt.Errorf("parsing %s as HTML: %v", url, err)
+		return nil, fmt.Errorf("parsing %s: %s", url, err)
 	}
 	return visit(nil, doc), nil
 }
